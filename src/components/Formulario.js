@@ -1,6 +1,14 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+// Para poder consumir la información que viene desde el context usamos el "nuevo" hook useContext
+import { CategoriasContext } from '../context/CategoriasContext';
+// El siguiente import es el que contiene la referencia al context que pasara como argumento al hook
 const Formulario = () => {
+
+    // Haciendo uso del context, traemos todo lo que esta diponible (en el value) y le aplicamos destructuring
+    const { hola } = useContext(CategoriasContext);
+
+    alert(hola);
+
     return ( 
         <form className="col-12">
             <fieldset className="text-center">
