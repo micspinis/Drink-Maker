@@ -29,7 +29,13 @@ const Formulario = () => {
                         className="form-control"
                         name="categoria"
                     >
-                         <option value="">-- Selecciona Categoría --</option>
+                        <option value="">-- Selecciona Categoría --</option>
+                        {categorias.map(categoria => (
+                            <option
+                                key={categoria.strCategory}
+                                value={categoria.strCategory}
+                            > {categoria.strCategory} </option>
+                        ))}
                     </select>
                 </div>
                 <div className="col-md-4">
