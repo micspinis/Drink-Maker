@@ -9,7 +9,7 @@ const ModalProvider = (props) => {
 
     // State del provider, guardar id cuando el usuario de click
     const [idreceta, guardarIdReceta] = useState(null);
-    const [ receta, guardarReceta ] = useState({});
+    const [ informacion, guardarReceta ] = useState({});
 
     // Una vez que tenemos una receta llamar la API
     useEffect(() => {
@@ -29,7 +29,9 @@ const ModalProvider = (props) => {
     return ( 
         <ModalContext.Provider
             value={{
-                guardarIdReceta
+                informacion,
+                guardarIdReceta,
+                guardarReceta
             }}
         >
             {props.children}
