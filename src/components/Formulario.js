@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 // Para poder consumir la información que viene desde el context usamos el "nuevo" hook useContext
 import { CategoriasContext } from '../context/CategoriasContext';
 // El siguiente import es el que contiene la referencia al context que pasara como argumento al hook
+import { RecetasContext } from "../context/RecetasContext";
 const Formulario = () => {
 
     // Definiendo state local
@@ -12,6 +13,7 @@ const Formulario = () => {
 
     // Haciendo uso del context, traemos todo lo que esta diponible (en el value) y le aplicamos destructuring
     const { categorias } = useContext(CategoriasContext);
+    const { buscarRecetas } = useContext(RecetasContext);
 
     // Funcion para leer los contenidos
     const obtenerDatosReceta = e => {
@@ -23,7 +25,13 @@ const Formulario = () => {
     
 
     return ( 
-        <form className="col-12">
+        <form 
+            className="col-12"
+            onSubmit={ e => {
+                e.preventDefault();
+                buscarRecetas(busqueda)
+            }}
+        >
             <fieldset className="text-center">
                 <legend>Busca bebidas por Categoria o Ingrediente</legend>
             </fieldset>
