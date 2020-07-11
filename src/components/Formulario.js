@@ -5,9 +5,9 @@ import { CategoriasContext } from '../context/CategoriasContext';
 const Formulario = () => {
 
     // Haciendo uso del context, traemos todo lo que esta diponible (en el value) y le aplicamos destructuring
-    const { hola } = useContext(CategoriasContext);
+    const { categorias } = useContext(CategoriasContext);
+    console.log(categorias);
 
-    alert(hola);
 
     return ( 
         <form className="col-12">

@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 // Crear el context -> Referencia al context
@@ -9,14 +10,26 @@ export const CategoriasContext = createContext();
 // Crear provider, que es donde se encuentran las funciones y state
 const CategoriasProvider = (props) => {
     // Crear el state del context
-    const [ hola, guardarHols ] = useState('Hola estoy fluyendo desde el context, esto es algo nuevo y genial XD!');
+    const [ categorias, guardarCategorias ] = useState([]);
+
+    // Ejecutar el llamado a la API (Usando AXIOS)
+    useEffect( () => {
+        const obtenerCategorias = async () => {
+            const url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+
+            const categorias = await axios.get(url);
+            guardarCategorias(categorias.data.drinks);
+        }        
+        obtenerCategorias();
+    }, [])
+
 
     return(
         // Aquie declaramos el flujo de datos usando props.childer y Provides
         <CategoriasContext.Provider
             // Todo lo que se ponga en value son los valores que estaran disponibles en el resto de componentes
             value={{
-                hola
+                categorias
             }}
         >
             {props.children}
