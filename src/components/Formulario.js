@@ -13,7 +13,7 @@ const Formulario = () => {
 
     // Haciendo uso del context, traemos todo lo que esta diponible (en el value) y le aplicamos destructuring
     const { categorias } = useContext(CategoriasContext);
-    const { buscarRecetas } = useContext(RecetasContext);
+    const { buscarRecetas, guardarConsultar } = useContext(RecetasContext);
 
     // Funcion para leer los contenidos
     const obtenerDatosReceta = e => {
@@ -29,7 +29,8 @@ const Formulario = () => {
             className="col-12"
             onSubmit={ e => {
                 e.preventDefault();
-                buscarRecetas(busqueda)
+                buscarRecetas(busqueda);
+                guardarConsultar(true);
             }}
         >
             <fieldset className="text-center">
